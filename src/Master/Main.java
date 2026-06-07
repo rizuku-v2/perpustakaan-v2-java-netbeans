@@ -13,26 +13,32 @@ import java.awt.CardLayout;
 public class Main extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
-    private CardLayout card;
-    /**
-     * Creates new form Main
-     */
+    private final CardLayout card;
+
+    private final Dashboard pDashboard = new Dashboard();
+    private final User pUser = new User();
+    private final Buku pBuku = new Buku();
+    private final Penulis pPenulis = new Penulis();
+    private final Kategori pKategori = new Kategori();
+    private final Penerbit pPenerbit = new Penerbit();
+    private final Peminjaman pPeminjaman = new Peminjaman();
+    private final Pengembalian pPengembalian = new Pengembalian();
     public Main() {
         initComponents();
-         setLocationRelativeTo(null); // tengah layar
-        setResizable(false);    
-
+        setLocationRelativeTo(null); // tengah layar
+        setResizable(false); 
+            
             card = new CardLayout();
             panelUtama.setLayout(card);
 
-            panelUtama.add(new Dashboard(), "dashboard");
-            panelUtama.add(new User(), "user");
-            panelUtama.add(new Buku(), "buku");
-            panelUtama.add(new Penulis(), "penulis");
-            panelUtama.add(new Kategori(), "kategori");
-            panelUtama.add(new Penerbit(), "penerbit");          
-            panelUtama.add(new Peminjaman(), "peminjaman");
-            panelUtama.add(new Pengembalian(), "pengembalian");
+            panelUtama.add(pDashboard, "dashboard");
+            panelUtama.add(pUser, "user");
+            panelUtama.add(pBuku, "buku");
+            panelUtama.add(pPenulis, "penulis");
+            panelUtama.add(pKategori, "kategori");
+            panelUtama.add(pPenerbit, "penerbit");          
+            panelUtama.add(pPeminjaman, "peminjaman");
+            panelUtama.add(pPengembalian, "pengembalian");
             card.show(panelUtama, "dashboard");
             }
 
@@ -249,7 +255,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_kategoriActionPerformed
 
     private void bukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bukuActionPerformed
-        // TODO add your handling code here:
+        pBuku.refreshData();
+        bukaPanel("buku");
     }//GEN-LAST:event_bukuActionPerformed
 
     private void peminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peminjamanActionPerformed
