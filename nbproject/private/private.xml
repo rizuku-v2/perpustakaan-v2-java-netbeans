@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Main.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Dashboard.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Penulis.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Penerbit.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Kategori.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Crud/CrudPenerbit.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Crud/CrudPenulis.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Crud/CrudBuku.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Koneksi/Koneksi.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Buku.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Helper/ComboItem.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Crud/Peminjaman.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Main.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/PerpusNetBeans/src/Master/Peminjaman.java</file>
         </group>
     </open-files>
 </project-private>

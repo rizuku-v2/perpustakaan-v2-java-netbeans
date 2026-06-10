@@ -18,9 +18,6 @@ public class Main extends javax.swing.JFrame {
     private final Dashboard pDashboard = new Dashboard();
     private final User pUser = new User();
     private final Buku pBuku = new Buku();
-    private final Penulis pPenulis = new Penulis();
-    private final Kategori pKategori = new Kategori();
-    private final Penerbit pPenerbit = new Penerbit();
     private final Peminjaman pPeminjaman = new Peminjaman();
     private final Pengembalian pPengembalian = new Pengembalian();
     public Main() {
@@ -32,11 +29,8 @@ public class Main extends javax.swing.JFrame {
             panelUtama.setLayout(card);
 
             panelUtama.add(pDashboard, "dashboard");
-            panelUtama.add(pUser, "user");
             panelUtama.add(pBuku, "buku");
-            panelUtama.add(pPenulis, "penulis");
-            panelUtama.add(pKategori, "kategori");
-            panelUtama.add(pPenerbit, "penerbit");          
+            panelUtama.add(pUser, "user");                         
             panelUtama.add(pPeminjaman, "peminjaman");
             panelUtama.add(pPengembalian, "pengembalian");
             card.show(panelUtama, "dashboard");
@@ -51,14 +45,12 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        penulis = new javax.swing.JButton();
         gambar = new javax.swing.JLabel();
         dashboard = new javax.swing.JButton();
-        penerbit = new javax.swing.JButton();
-        kategori = new javax.swing.JButton();
         buku = new javax.swing.JButton();
         peminjaman = new javax.swing.JButton();
         pengembalian = new javax.swing.JButton();
+        user = new javax.swing.JButton();
         panelUtama = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,17 +64,6 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Perpustakaan");
-
-        penulis.setBackground(new java.awt.Color(102, 102, 255));
-        penulis.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        penulis.setForeground(new java.awt.Color(255, 255, 255));
-        penulis.setText("Penulis");
-        penulis.setBorder(null);
-        penulis.setBorderPainted(false);
-        penulis.setContentAreaFilled(false);
-        penulis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        penulis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        penulis.addActionListener(this::penulisActionPerformed);
 
         gambar.setBackground(new java.awt.Color(51, 255, 102));
         gambar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/logo.png"))); // NOI18N
@@ -98,28 +79,6 @@ public class Main extends javax.swing.JFrame {
         dashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         dashboard.addActionListener(this::dashboardActionPerformed);
-
-        penerbit.setBackground(new java.awt.Color(102, 102, 255));
-        penerbit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        penerbit.setForeground(new java.awt.Color(255, 255, 255));
-        penerbit.setText("Penerbit");
-        penerbit.setBorder(null);
-        penerbit.setBorderPainted(false);
-        penerbit.setContentAreaFilled(false);
-        penerbit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        penerbit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        penerbit.addActionListener(this::penerbitActionPerformed);
-
-        kategori.setBackground(new java.awt.Color(102, 102, 255));
-        kategori.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        kategori.setForeground(new java.awt.Color(255, 255, 255));
-        kategori.setText("Kategori");
-        kategori.setBorder(null);
-        kategori.setBorderPainted(false);
-        kategori.setContentAreaFilled(false);
-        kategori.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        kategori.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        kategori.addActionListener(this::kategoriActionPerformed);
 
         buku.setBackground(new java.awt.Color(102, 102, 255));
         buku.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -154,6 +113,17 @@ public class Main extends javax.swing.JFrame {
         pengembalian.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         pengembalian.addActionListener(this::pengembalianActionPerformed);
 
+        user.setBackground(new java.awt.Color(102, 102, 255));
+        user.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        user.setForeground(new java.awt.Color(255, 255, 255));
+        user.setText("User");
+        user.setBorder(null);
+        user.setBorderPainted(false);
+        user.setContentAreaFilled(false);
+        user.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        user.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        user.addActionListener(this::userActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,13 +133,11 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(penulis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(penerbit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(kategori, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(peminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
+                            .addComponent(pengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel1))
@@ -188,18 +156,14 @@ public class Main extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(penulis, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(penerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buku, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(peminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         panelUtama.setBackground(new java.awt.Color(251, 246, 255));
@@ -238,34 +202,25 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void penulisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_penulisActionPerformed
-        bukaPanel("penulis");
-    }//GEN-LAST:event_penulisActionPerformed
-
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
         bukaPanel("dashboard");
     }//GEN-LAST:event_dashboardActionPerformed
 
-    private void penerbitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_penerbitActionPerformed
-        bukaPanel("penerbit");
-    }//GEN-LAST:event_penerbitActionPerformed
-
-    private void kategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategoriActionPerformed
-        bukaPanel("kategori");
-    }//GEN-LAST:event_kategoriActionPerformed
-
     private void bukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bukuActionPerformed
-        pBuku.refreshData();
         bukaPanel("buku");
     }//GEN-LAST:event_bukuActionPerformed
 
     private void peminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peminjamanActionPerformed
-        // TODO add your handling code here:
+        bukaPanel("peminjaman");
     }//GEN-LAST:event_peminjamanActionPerformed
 
     private void pengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pengembalianActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        bukaPanel("user");
+    }//GEN-LAST:event_userActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,11 +253,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel gambar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton kategori;
     private javax.swing.JPanel panelUtama;
     private javax.swing.JButton peminjaman;
-    private javax.swing.JButton penerbit;
     private javax.swing.JButton pengembalian;
-    private javax.swing.JButton penulis;
+    private javax.swing.JButton user;
     // End of variables declaration//GEN-END:variables
 }

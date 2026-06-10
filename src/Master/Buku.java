@@ -1,80 +1,35 @@
 package Master;
 import Crud.CrudBuku;
-import Helper.ComboItem;
-import java.sql.*;
 public class Buku extends javax.swing.JPanel {  
-    private int idBuku = 0;
+    private int idBuku;
     private CrudBuku crudBuku = new CrudBuku();
 
     public Buku() {
         initComponents();
         
-        refreshData();
-    }
-    public void refreshData() {
-
-        crudBuku.loadKategori(dKategori);
-        crudBuku.loadPenerbit(dPenerbit);
-        crudBuku.loadPenulis(dPenulis);
-        crudBuku.tampil(tblBuku);
     }
     public void reset() {
-
         idBuku = 0;
         tnama.setText("");
         tbaik.setText("");
         trusak.setText("");
-
-        if(dKategori.getItemCount() > 0){
-            dKategori.setSelectedIndex(0);
-        }
-
-        if(dPenulis.getItemCount() > 0){
-            dPenulis.setSelectedIndex(0);
-        }
-
-        if(dPenerbit.getItemCount() > 0){
-            dPenerbit.setSelectedIndex(0);
-        }
-
+        tkategori.setText("");
+        tpenulis.setText("");
+        tpenerbit.setText("");
         tblBuku.clearSelection();
-
         tnama.requestFocus();
-    }   
-    private void pilihComboById(javax.swing.JComboBox comboBox, int id){
-
-        for(int i = 0; i < comboBox.getItemCount(); i++){
-
-            ComboItem item =
-                    (ComboItem) comboBox.getItemAt(i);
-
-            if(item.getId() == id){
-
-                comboBox.setSelectedIndex(i);
-                break;
-            }
-        }
-    }
+    }     
     public void rowClicked(){
-        try{
-            int row = tblBuku.getSelectedRow();
-            if(row == -1){
-                return;
-            }
-            idBuku = Integer.parseInt(tblBuku.getValueAt(row, 0).toString());
-            ResultSet rs = crudBuku.getById(idBuku);
-            if(rs.next()){               
-                tnama.setText(rs.getString("nama"));
-                trusak.setText(rs.getString("j_rusak"));
-                tbaik.setText(rs.getString("j_baik"));
-                pilihComboById(dKategori, rs.getInt("kategori_id"));
-                pilihComboById(dPenerbit, rs.getInt("penerbit_id"));
-                pilihComboById(dPenulis, rs.getInt("penulis_id")
-                );
-            }
-        }catch(NumberFormatException | SQLException e){
-            System.out.println(e.getMessage());
-        }
+
+    int row = tblBuku.getSelectedRow();
+
+    idBuku = Integer.parseInt(tblBuku.getValueAt(row, 0).toString());
+    tnama.setText(tblBuku.getValueAt(row, 1).toString());
+    trusak.setText(tblBuku.getValueAt(row, 2).toString());
+    tbaik.setText(tblBuku.getValueAt(row, 3).toString());
+    tkategori.setText(tblBuku.getValueAt(row, 4).toString());
+    tpenulis.setText(tblBuku.getValueAt(row, 5).toString());
+    tpenerbit.setText(tblBuku.getValueAt(row, 6).toString());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -96,16 +51,16 @@ public class Buku extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         trusak = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        dKategori = new javax.swing.JComboBox<>();
-        dPenulis = new javax.swing.JComboBox<>();
-        dPenerbit = new javax.swing.JComboBox<>();
+        tpenerbit = new javax.swing.JTextField();
+        tkategori = new javax.swing.JTextField();
+        tpenulis = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(240, 245, 252));
         setMinimumSize(new java.awt.Dimension(826, 524));
         setPreferredSize(new java.awt.Dimension(826, 524));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
         jPanel2.setMinimumSize(new java.awt.Dimension(781, 500));
         jPanel2.setPreferredSize(new java.awt.Dimension(783, 502));
 
@@ -179,12 +134,7 @@ public class Buku extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Buku Rusak");
 
-        dKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        dKategori.addActionListener(this::dKategoriActionPerformed);
-
-        dPenulis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        dPenerbit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tpenerbit.addActionListener(this::tpenerbitActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -199,10 +149,10 @@ public class Buku extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(dKategori, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tnama, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(tnama, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tkategori))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -214,13 +164,15 @@ public class Buku extends javax.swing.JPanel {
                                     .addComponent(jLabel7)
                                     .addComponent(trusak, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(68, 68, 68))
+                                    .addComponent(tpenerbit)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dPenulis, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(tpenulis))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
@@ -228,7 +180,7 @@ public class Buku extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(bedit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,16 +194,14 @@ public class Buku extends javax.swing.JPanel {
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(tnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel6))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tbaik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(trusak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(trusak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tpenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(28, 28, 28)))
@@ -259,19 +209,19 @@ public class Buku extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tpenulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dPenulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btambah, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bedit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btambah, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bedit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -292,10 +242,6 @@ public class Buku extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dKategoriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dKategoriActionPerformed
-
     private void trusakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trusakActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_trusakActionPerformed
@@ -305,21 +251,18 @@ public class Buku extends javax.swing.JPanel {
     }//GEN-LAST:event_tbaikActionPerformed
 
     private void beditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beditActionPerformed
-        ComboItem kategori = (ComboItem) dKategori.getSelectedItem();
-        ComboItem penerbit = (ComboItem) dPenerbit.getSelectedItem();
-        ComboItem penulis = (ComboItem) dPenulis.getSelectedItem();  
         int rusak = trusak.getText().trim().isEmpty()? 0 
                 : Integer.parseInt(trusak.getText());
         int baik = tbaik.getText().trim().isEmpty()? 0 
                 : Integer.parseInt(tbaik.getText());
         crudBuku.update(
-                idBuku,
+                idBuku,    
                 tnama.getText(),
                 rusak,
                 baik,
-                kategori.getId(),
-                penerbit.getId(),
-                penulis.getId()
+                tkategori.getText(),
+                tpenerbit.getText(),
+                tpenulis.getText()
         );
                 reset();
         crudBuku.tampil(tblBuku);
@@ -333,9 +276,6 @@ public class Buku extends javax.swing.JPanel {
 
     private void btambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btambahActionPerformed
 
-        ComboItem kategori = (ComboItem) dKategori.getSelectedItem();
-        ComboItem penerbit = (ComboItem) dPenerbit.getSelectedItem();
-        ComboItem penulis = (ComboItem) dPenulis.getSelectedItem();
         int rusak = trusak.getText().trim().isEmpty()? 0 
                 : Integer.parseInt(trusak.getText());
         int baik = tbaik.getText().trim().isEmpty()? 0 
@@ -344,9 +284,9 @@ public class Buku extends javax.swing.JPanel {
                 tnama.getText(),
                 rusak,
                 baik,
-                kategori.getId(),
-                penerbit.getId(),
-                penulis.getId()
+                tkategori.getText(),
+                tpenerbit.getText(),
+                tpenulis.getText()
         );
 
         reset();
@@ -361,13 +301,14 @@ public class Buku extends javax.swing.JPanel {
         rowClicked();
     }//GEN-LAST:event_tblBukuMouseClicked
 
+    private void tpenerbitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tpenerbitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tpenerbitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bedit;
     private javax.swing.JButton btambah;
-    private javax.swing.JComboBox<String> dKategori;
-    private javax.swing.JComboBox<String> dPenerbit;
-    private javax.swing.JComboBox<String> dPenulis;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -380,7 +321,10 @@ public class Buku extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tbaik;
     private javax.swing.JTable tblBuku;
+    private javax.swing.JTextField tkategori;
     private javax.swing.JTextField tnama;
+    private javax.swing.JTextField tpenerbit;
+    private javax.swing.JTextField tpenulis;
     private javax.swing.JTextField trusak;
     // End of variables declaration//GEN-END:variables
 }
