@@ -5,6 +5,7 @@
 package Master;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Main extends javax.swing.JFrame {
     private final Peminjaman pPeminjaman = new Peminjaman();
     private final Pengembalian pPengembalian = new Pengembalian();
     public Main() {
-        initComponents();
+        initComponents();       
         setLocationRelativeTo(null); // tengah layar
         setResizable(false); 
             
@@ -166,7 +167,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(102, Short.MAX_VALUE))
         );
 
-        panelUtama.setBackground(new java.awt.Color(251, 246, 255));
+        panelUtama.setBackground(new java.awt.Color(240, 245, 252));
         panelUtama.setMinimumSize(new java.awt.Dimension(760, 524));
         panelUtama.setPreferredSize(new java.awt.Dimension(760, 524));
 
@@ -207,18 +208,22 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboardActionPerformed
 
     private void bukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bukuActionPerformed
+        pBuku.refreshData();
         bukaPanel("buku");
     }//GEN-LAST:event_bukuActionPerformed
 
     private void peminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peminjamanActionPerformed
-        bukaPanel("peminjaman");
+        pPeminjaman.refreshData();
+        bukaPanel("peminjaman");       
     }//GEN-LAST:event_peminjamanActionPerformed
 
     private void pengembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianActionPerformed
-        // TODO add your handling code here:
+        pPengembalian.refreshData();
+        bukaPanel("pengembalian");       
     }//GEN-LAST:event_pengembalianActionPerformed
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        pUser.refreshData();
         bukaPanel("user");
     }//GEN-LAST:event_userActionPerformed
 

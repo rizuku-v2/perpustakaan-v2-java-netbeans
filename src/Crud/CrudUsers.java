@@ -7,9 +7,9 @@ import javax.swing.JTable;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Users {
+public class CrudUsers {
     Connection conn;
-    public Users() {
+    public CrudUsers() {
         try {
             conn = Koneksi.getKoneksi();
         } catch (SQLException e) {
@@ -23,26 +23,31 @@ public class Users {
     public void simpan(
             String nama,
             String username,
-            String pass,
+            String alamat,
             String email,
             String nik
-    ) {
-        try {
+    ) {                
+        
+        try {      
+            
             String sql = "INSERT INTO users "
-                    + "(nama,username,pass,email,nik,verif) "
+                    + "(nama,username,alamat,email,nik,verif) "
                     + "VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, nama);
             pst.setString(2, username);
-            pst.setString(3, pass);
+            pst.setString(3, alamat);
             pst.setString(4, email);
             pst.setString(5, nik);
-            pst.setString(6, "verified");
+            pst.setString(6, "Unverified");
             pst.executeUpdate();
             JOptionPane.showMessageDialog(
                     null, "Data user berhasil disimpan"
             );
         } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(
+                    null, e.getMessage()
+            );
             System.out.println(e.getMessage());
         }
     }
@@ -53,32 +58,26 @@ public class Users {
             int id,
             String nama,
             String username,
-            String pass,
+            String alamat,
             String email,
-            String nik,
-            String verif
+            String nik   
     ) {
         try {
             String sql = "UPDATE users SET "
                     + "nama=?, "
                     + "username=?, "
-                    + "pass=?, "
+                    + "alamat=?, "
                     + "email=?, "
-                    + "nik=?, "
-                    + "verif=? "
+                    + "nik=? "
                     + "WHERE id=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, nama);
             pst.setString(2, username);
-            pst.setString(3, pass);
+            pst.setString(3, alamat);
             pst.setString(4, email);
             pst.setString(5, nik);
-            pst.setString(6, verif);
-            pst.setInt(7, id);
+            pst.setInt(6, id);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(
-                    null, "Data user berhasil diupdate"
-            );
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -92,10 +91,7 @@ public class Users {
                     "DELETE FROM users WHERE id=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1, id);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(
-                    null, "Data user berhasil dihapus"
-            );
+            pst.executeUpdate();           
         } catch (HeadlessException | SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -108,7 +104,7 @@ public class Users {
         model.addColumn("ID");
         model.addColumn("Nama");
         model.addColumn("Username");
-        model.addColumn("Password");
+        model.addColumn("Alamat");
         model.addColumn("Email");
         model.addColumn("NIK");
         model.addColumn("Verifikasi");
@@ -121,7 +117,7 @@ public class Users {
                     rs.getString("id"),
                     rs.getString("nama"),
                     rs.getString("username"),
-                    rs.getString("pass"),
+                    rs.getString("alamat"),
                     rs.getString("email"),
                     rs.getString("nik"),
                     rs.getString("verif")
@@ -129,6 +125,23 @@ public class Users {
             }
             table.setModel(model);
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    // =========================================
+    // VERIF USER
+    // =========================================
+    public void verif(int id){
+        try{
+            String sql =
+                    "UPDATE users "
+                    + "SET verif='Verified' "
+                    + "WHERE id=?";
+            PreparedStatement pst =
+                    conn.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+        }catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
@@ -142,10 +155,10 @@ public class Users {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Nama");
-        model.addColumn("Username");
-        model.addColumn("Password");
+        model.addColumn("Username");  
         model.addColumn("Email");
         model.addColumn("NIK");
+        model.addColumn("Alamat");
         model.addColumn("Verifikasi");
         try {
             String sql = "SELECT * FROM users "
@@ -164,10 +177,10 @@ public class Users {
                 model.addRow(new Object[]{
                     rs.getString("id"),
                     rs.getString("nama"),
-                    rs.getString("username"),
-                    rs.getString("pass"),
+                    rs.getString("username"),                   
                     rs.getString("email"),
                     rs.getString("nik"),
+                    rs.getString("alamat"),
                     rs.getString("verif")
                 });
             }

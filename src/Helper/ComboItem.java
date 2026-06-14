@@ -9,12 +9,15 @@ public class ComboItem {
         this.id = id;
         this.nama = nama;
     }
+
     public int getId() {
         return id;
     }
+
     public String getNama() {
         return nama;
     }
+
     @Override
     public String toString() {
         return nama;
