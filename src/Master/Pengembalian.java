@@ -47,6 +47,7 @@ public class Pengembalian extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         dPeminjaman = new javax.swing.JComboBox<>();
         dStatus = new javax.swing.JComboBox<>();
+        PengembalianPDF = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(240, 245, 252));
         setMinimumSize(new java.awt.Dimension(826, 524));
@@ -104,31 +105,43 @@ public class Pengembalian extends javax.swing.JPanel {
 
         dStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        PengembalianPDF.setText("📤  Export");
+        PengembalianPDF.setBackground(new java.awt.Color(28, 57, 107));
+        PengembalianPDF.setForeground(new java.awt.Color(255, 255, 255));
+        PengembalianPDF.setFont(PengembalianPDF.getFont().deriveFont(java.awt.Font.BOLD));
+        PengembalianPDF.setOpaque(true);
+        PengembalianPDF.setBorderPainted(false);
+        PengembalianPDF.addActionListener(this::PengembalianPDFActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(dPeminjaman, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(26, 26, 26)
-                        .addComponent(btambah, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(285, 285, 285))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(PengembalianPDF)
+                        )
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(dPeminjaman, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(dStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
+                            .addGap(26, 26, 26)
+                            .addComponent(btambah, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +161,10 @@ public class Pengembalian extends javax.swing.JPanel {
                         .addComponent(dStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PengembalianPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -163,9 +179,9 @@ public class Pengembalian extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -187,8 +203,34 @@ public class Pengembalian extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_dPeminjamanActionPerformed
 
+    private void PengembalianPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PengembalianPDFActionPerformed
+        Helper.ExportHelper.Options opts =
+            Helper.ExportHelper.showDialog(tblPengembalian, "Data Pengembalian");
+        if (opts == null) return;
+        opts.applyToTable(tblPengembalian);
+        if (opts.type == Helper.ExportHelper.Type.PDF)
+            Helper.ExportPDF.fromTable(tblPengembalian, "Data Pengembalian", opts);
+        else
+            Helper.ExportCSV.fromTable(tblPengembalian, "Data Pengembalian", opts);
+        Helper.ExportHelper.clearOptions(tblPengembalian);
+    }//GEN-LAST:event_PengembalianPDFActionPerformed
+
+    private void applyFilter(javax.swing.JTable tbl, String value, int colIndex) {
+    if ("Semua".equals(value)) { clearFilter(tbl); return; }
+    javax.swing.table.TableRowSorter<javax.swing.table.DefaultTableModel> sorter =
+        new javax.swing.table.TableRowSorter<>(
+            (javax.swing.table.DefaultTableModel) tbl.getModel());
+    sorter.setRowFilter(javax.swing.RowFilter.regexFilter(
+        "(?i)^" + java.util.regex.Pattern.quote(value) + "$", colIndex));
+    tbl.setRowSorter(sorter);
+}
+
+private void clearFilter(javax.swing.JTable tbl) {
+    tbl.setRowSorter(null);
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PengembalianPDF;
     private javax.swing.JButton btambah;
     private javax.swing.JComboBox<String> dPeminjaman;
     private javax.swing.JComboBox<String> dStatus;

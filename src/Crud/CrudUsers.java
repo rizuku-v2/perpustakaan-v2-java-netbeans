@@ -18,7 +18,6 @@ public class CrudUsers {
     }
     // =========================================
     // INSERT USER
-    // VERIFIED OTOMATIS
     // =========================================
     public void simpan(
             String nama,
@@ -31,15 +30,14 @@ public class CrudUsers {
         try {      
             
             String sql = "INSERT INTO users "
-                    + "(nama,username,alamat,email,nik,verif) "
-                    + "VALUES (?,?,?,?,?,?)";
+                    + "(nama,username,alamat,email,nik) "
+                    + "VALUES (?,?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, nama);
             pst.setString(2, username);
             pst.setString(3, alamat);
             pst.setString(4, email);
             pst.setString(5, nik);
-            pst.setString(6, "Unverified");
             pst.executeUpdate();
             JOptionPane.showMessageDialog(
                     null, "Data user berhasil disimpan"
@@ -107,7 +105,6 @@ public class CrudUsers {
         model.addColumn("Alamat");
         model.addColumn("Email");
         model.addColumn("NIK");
-        model.addColumn("Verifikasi");
         try {
             String sql = "SELECT * FROM users";
             Statement st = conn.createStatement();
@@ -120,31 +117,13 @@ public class CrudUsers {
                     rs.getString("alamat"),
                     rs.getString("email"),
                     rs.getString("nik"),
-                    rs.getString("verif")
                 });
             }
             table.setModel(model);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-    // =========================================
-    // VERIF USER
-    // =========================================
-    public void verif(int id){
-        try{
-            String sql =
-                    "UPDATE users "
-                    + "SET verif='Verified' "
-                    + "WHERE id=?";
-            PreparedStatement pst =
-                    conn.prepareStatement(sql);
-            pst.setInt(1, id);
-            pst.executeUpdate();
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-    }
+    }   
     // =========================================
     // SEARCH USER
     // =========================================
@@ -159,7 +138,6 @@ public class CrudUsers {
         model.addColumn("Email");
         model.addColumn("NIK");
         model.addColumn("Alamat");
-        model.addColumn("Verifikasi");
         try {
             String sql = "SELECT * FROM users "
                     + "WHERE "
@@ -181,7 +159,6 @@ public class CrudUsers {
                     rs.getString("email"),
                     rs.getString("nik"),
                     rs.getString("alamat"),
-                    rs.getString("verif")
                 });
             }
             table.setModel(model);

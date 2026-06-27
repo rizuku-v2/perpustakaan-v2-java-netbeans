@@ -21,7 +21,7 @@ public class CrudDashboard {
 
             String sql =
                     "SELECT COUNT(*) total "
-                    + "FROM visitor";
+                    + "FROM visitors";
 
             Statement st =
                     conn.createStatement();
@@ -109,8 +109,7 @@ public class CrudDashboard {
 
             String sql =
                     "SELECT COUNT(*) total "
-                    + "FROM users "
-                    + "WHERE verif='ya'";
+                    + "FROM users";
 
             Statement st =
                     conn.createStatement();

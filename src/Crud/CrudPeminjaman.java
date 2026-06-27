@@ -307,7 +307,6 @@ public class CrudPeminjaman {
             String sql =
                     "SELECT id,nama "
                     + "FROM users "
-                    + "WHERE verif='verified' "
                     + "ORDER BY nama";
 
             Statement st =
